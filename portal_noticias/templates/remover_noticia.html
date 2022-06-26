@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block corpo %}
+<div style="text-align: center">
+    <h2>Confirmar?</h2>
+
+    <form method="post">{% csrf_token %}
+        <h5>Você tem certeza que deseja deletar esta notícia: "{{ noticia.titulo }}" ?</h5>
+        <br/>
+        <input type="submit" class="btn btn-primary" value="Sim" />
+        <input type="button" class="btn btn-secondary" onclick="javascript:history.back()" value="Não" />
+    </form>
+
+</div>
+{% endblock %}

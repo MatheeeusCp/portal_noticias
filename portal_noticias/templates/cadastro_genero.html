@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block corpo %}
+<h2 class="sub-header">Cadastre um novo gênero</h2>
+
+<form method="post">
+    {% csrf_token %}
+
+    <div class="form-group">
+        {{ form.descricao.errors }}
+        <label for="{{ form.descricao.id_for_label }}">Descrição: </label>
+        {{ form.descricao }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+</form>
+
+{% endblock %}
