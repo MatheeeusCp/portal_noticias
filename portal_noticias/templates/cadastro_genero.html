@@ -1,18 +1,48 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block corpo %}
-<h2 class="sub-header">Cadastre um novo gênero</h2>
+<h2 class="sub-header mx-4">Cadastre um novo gênero para as notícias</h2>
+<hr class="mx-4">
 
-<form method="post">
+<form method="post" class="m-2">
     {% csrf_token %}
-
-    <div class="form-group">
-        {{ form.descricao.errors }}
-        <label for="{{ form.descricao.id_for_label }}">Descrição: </label>
-        {{ form.descricao }}
+    <div class="col-md-2 ml-0">
+        {{ form.descricao|as_crispy_field }}
     </div>
 
-    <button type="submit" class="btn btn-primary">Salvar</button>
+    <button type="submit" class="btn btn-primary ml-3" name="botao_salvar">Salvar</button>
 </form>
+
+{% if messages %}
+<br>
+{% for message in messages%}
+<div class="alert {{message.tags}}">{{message}}</div>
+{% endfor %}
+{% endif %}
+
+<table class="table table-striped m-4">
+    <thead>
+    <tr>
+        <th scope="col">Código</th>
+        <th scope="col">Descrição</th>
+        <th scope="col">Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for g in generos %}
+    <tr>
+        <td>{{ g.id }}</td>
+        <td>{{ g.descricao }}</td>
+        <th>
+            <a href="{% url 'remover_genero' g.id %}" class="mb-5">
+                <button type="submit" class="btn btn-outline-danger" name="botao_remover">Remover</button>
+            </a>
+        </th>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
 
 {% endblock %}

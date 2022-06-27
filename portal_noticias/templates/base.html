@@ -11,9 +11,12 @@
 <body class="pb-4">
 <div class="container">
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 border-bottom mb-4">
-        <a href="{% url 'home' %}" style="text-decoration: none; color: #000000;">
-            <button type="button" class="btn btn-dark">Home</button>
-        </a>
+        <div>
+            <input type="button" class="btn btn-outline-secondary" onclick="javascript:history.back()" value="Voltar" />
+            <a href="{% url 'home' %}" style="text-decoration: none; color: #000000;">
+                <button type="button" class="btn btn-dark">Home</button>
+            </a>
+        </div>
         <h2 class="nav col-12 col-md-auto justify-content-center" style="font-family: 'Courier New'">
             SAVIOR
         </h2>

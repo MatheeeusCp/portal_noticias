@@ -1,9 +1,24 @@
 {% extends 'base.html' %}
 
 {% block corpo %}
-<div class="title">
-    <h1>
+<div class="container" style="text-align: center">
+    <h1 class="m-4">
         {{ noticia.titulo }}
     </h1>
+    <img src="{{ noticia.url_imagem }}" class="center-block " alt="{{ noticia.url_imagem }}">
+</div>
+<div class="container">
+    <div class="row justify-content-between mt-2 mb-0">
+        <h6 class="ml-4 mt-4 mr-4" style="color: darkgray">
+            {{ noticia.nome_autor }} - {{ noticia.data_criacao }}
+        </h6>
+        <h5 class="ml-4 mt-4 mr-4" style="color: darkgray">
+            {{ noticia.genero }}
+        </h5>
+    </div>
+    <hr>
+    <h3 class="display-4" style="font-size: 32px; line-height: 1.6; text-align: justify;">
+        {{ noticia.conteudo }}
+    </h3>
 </div>
 {% endblock %}

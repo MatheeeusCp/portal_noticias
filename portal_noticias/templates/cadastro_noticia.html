@@ -1,44 +1,26 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block corpo %}
-<h2 class="sub-header">Cadastre uma nova notícia</h2>
-
-<form method="post">
+<h2 class="sub-header mx-4">{% if cadastro %} Crie aqui a sua nova notícia {% else %} Editar notícia {% endif %}</h2>
+<hr class="mx-4">
+<form method="post" class="m-4">
     {% csrf_token %}
-
-    <div class="form-group">
-        {{ form.genero.errors }}
-        <label for="{{ form.genero.id_for_label }}">Genero: </label>
-        {{ form.genero }}
-        <a href="{% url 'cadastro_genero' %}">
-            <button type="button" class="btn btn-outline-secondary">Cadastrar novo gênero</button>
-        </a>
+    <div class="form-row">
+        <div class="form-group col-md-2 mb-4">
+            {{ form.genero|as_crispy_field }}
+            <a href="{% url 'cadastro_genero' %}" class="mb-5">
+                <button type="button" class="btn btn-outline-secondary btn-sm">Cadastre um novo gênero</button>
+            </a>
+        </div>
+        <div class="form-group col mb-0">
+            {{ form.nome_autor|as_crispy_field }}
+        </div>
     </div>
-
-    <div class="form-group">
-        {{ form.titulo.errors }}
-        <label for="{{ form.titulo.id_for_label }}">Título: </label>
-        {{ form.titulo }}
-    </div>
-
-    <div class="form-group">
-        {{ form.conteudo.errors }}
-        <label for="{{ form.conteudo.id_for_label }}">Conteúdo: </label>
-        {{ form.conteudo }}
-    </div>
-
-    <div class="form-group">
-        {{ form.url_imagem.errors }}
-        <label for="{{ form.url_imagem.id_for_label }}">URL da imagem: </label>
-        {{ form.url_imagem }}
-    </div>
-
-    <div class="form-group">
-        {{ form.nome_autor.errors }}
-        <label for="{{ form.nome_autor.id_for_label }}">Nome do autor: </label>
-        {{ form.nome_autor }}
-    </div>
-
+    {{ form.url_imagem|as_crispy_field }}
+    {{ form.titulo|as_crispy_field }}
+    {{ form.conteudo|as_crispy_field }}
     <button type="submit" class="btn btn-primary">Salvar</button>
 </form>
 

@@ -13,6 +13,26 @@
     </div>
 </div>
 
+
+<form class="ml-3 mr-4 mb-4 my-2" method="POST">{% csrf_token %}
+    <div class="form-row">
+        <div class="col">
+            <input class="form-control" type="text" placeholder="Digite o título" name="filter">
+        </div>
+        <div class="col">
+            <select class="form-control" name="genero_filter" >
+                <option>Escolha um gênero...</option>
+                {% for g in generos %}
+                <option>{{ g.descricao }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-0">
+            <button class="btn btn-secondary" type="submit">Filtrar</button>
+        </div>
+    </div>
+</form>
+
 <table class="table table-striped">
     <thead>
     <tr>
@@ -42,4 +62,5 @@
     {% endfor %}
     </tbody>
 </table>
+
 {% endblock %}

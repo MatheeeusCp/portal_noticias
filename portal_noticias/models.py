@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.db import models
 
 
@@ -15,4 +16,3 @@ class Noticia(models.Model):
     url_imagem = models.TextField()
     nome_autor = models.CharField(max_length=100)
     data_criacao = models.DateTimeField(auto_now_add=True)
-    data_alteracao = models.DateTimeField(auto_now_add=True)

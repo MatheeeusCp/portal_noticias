@@ -1,11 +1,31 @@
 {% extends 'base.html' %}
 
 {% block corpo %}
+
+<form class="ml-3 mr-4 mb-4 my-2" method="POST">{% csrf_token %}
+    <div class="form-row">
+        <div class="col">
+            <input class="form-control" type="text" placeholder="Digite o título" name="filter">
+        </div>
+        <div class="col">
+            <select class="form-control" name="genero_filter" >
+                <option>Escolha um gênero...</option>
+                {% for g in generos %}
+                <option>{{ g.descricao }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-0">
+            <button class="btn btn-secondary" type="submit">Filtrar</button>
+        </div>
+    </div>
+</form>
+
 <div class="container-fluid">
     <div class="row">
         {% for noticia in noticias %}
         <a href="{% url 'consulta_noticia' noticia.id %}" style="text-decoration: none; color: #000000;">
-            <div class="card mx-2" style="width: 18rem;">
+            <div class="card mx-2 mb-2" style="width: 18rem;">
                 <img class="card-img-top" src="{{ noticia.url_imagem }}" alt="{{ noticia.url_imagem }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ noticia.titulo }}</h5>
